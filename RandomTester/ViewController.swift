@@ -10,16 +10,17 @@ import Cocoa
 
 enum SliderTags : Int {
     case Uniform = 1
-    case Pseudo = 2
+    case Halton = 2
+    case Sobol = 3
 }
 
 class ViewController: NSViewController {
     @IBOutlet weak var uniformSlider: NSSlider!
-    @IBOutlet weak var pseudoSlider: NSSlider!
+    @IBOutlet weak var haltonSlider: NSSlider!
+    @IBOutlet weak var sobolSlider: NSSlider!
     @IBOutlet weak var dotView: NSView!
     
     var gView : CGView?
-    var count = 2000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +29,9 @@ class ViewController: NSViewController {
 //            gView.bounds = self.view.bounds
             self.dotView.addSubview(gView)
 //            self.dotView.needsDisplay = true
-            gView.points = self.generatePointCloudUniform(gView.bounds.size, count: count)
-//            gView.haltonPoints = self.generatePointCloudHalton(gView.bounds.size, count: count)
-            gView.haltonPoints = self.generatePointCloudSobol(gView.bounds.size, count: count)
             self.uniformSlider.doubleValue = gView.uniformTransparency
-            self.pseudoSlider.doubleValue = gView.pseudoTransparency
+            self.haltonSlider.doubleValue = gView.haltonTransparency
+            self.sobolSlider.doubleValue = gView.sobolTransparency
         }
         self.view.needsDisplay = true
         // Do any additional setup after loading the view.
@@ -41,50 +40,8 @@ class ViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         if let win = self.view.window {
-            win.title = "Uniform Random"
+            win.title = "Random Distributions"
         }
-    }
-    func generatePointCloudUniform(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        
-        for _ in 1...count {
-            let x = CGFloat(TLRandom(Int(size.width)))
-            let y = CGFloat(TLRandom(Int(size.height)))
-            let point = CGPointMake(x, y)
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudHalton(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let halton = HaltonRandom()
-        
-        for _ in 1...count {
-            let point = halton.random(size)
-
-//            let x = CGFloat(halton.random() * Double(size.width))
-//            let y = CGFloat(halton.random() * Double(size.height))
-//            let point = CGPointMake(x, y)
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudSobol(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let sobol = SobolRandom()
-        
-        for _ in 1...count {
-            var point = sobol.random()
-            point.x *= size.width
-            point.y *= size.height
-//            let x = CGFloat(sobol.random() * )
-//            let y = CGFloat(sobol.random() * Double(size.height))
-//            let point = CGPointMake(x, y)
-            points.append(point)
-        }
-        return points
     }
     
     @IBAction func setTransparency(sender: NSSlider) {
@@ -92,8 +49,10 @@ class ViewController: NSViewController {
         switch tag {
         case .Uniform :
             self.gView?.uniformTransparency = sender.doubleValue
-        case .Pseudo :
-            self.gView?.pseudoTransparency = sender.doubleValue
+        case .Halton :
+            self.gView?.haltonTransparency = sender.doubleValue
+        case .Sobol :
+            self.gView?.sobolTransparency = sender.doubleValue
         }
         if let g = self.gView {
             g.needsDisplay = true
@@ -104,7 +63,9 @@ class ViewController: NSViewController {
 
 class CGView : NSView {
     var uniformTransparency = 0.8
-    var pseudoTransparency = 0.3
+    var haltonTransparency = 0.4
+    var sobolTransparency = 0.4
+    var count = 2000
 
     var points : [CGPoint] = [] {
         didSet {
@@ -116,6 +77,12 @@ class CGView : NSView {
             self.needsDisplay = true
         }
     }
+    var sobolPoints : [CGPoint] = [] {
+        didSet {
+            self.needsDisplay = true
+        }
+    }
+
     let pointSize : CGFloat = 2
     
     private var currentContext : CGContext? {
@@ -131,28 +98,42 @@ class CGView : NSView {
         }
     }
 
-//    
+    
 //    init(frameRect: NSRect) {
 //        super.init(frame: frameRect)
 //    }
-//    
+    
+    override func viewDidMoveToSuperview() {
+        super.viewDidMoveToSuperview()
+        self.points = self.generatePointCloudUniform(self.bounds.size, count: count)
+        self.haltonPoints = self.generatePointCloudHalton(self.bounds.size, count: count)
+        self.sobolPoints = self.generatePointCloudSobol(self.bounds.size, count: count)
+        
+    }
     override func drawRect(rect: CGRect) {
         if let context = self.currentContext {
             self.drawUniformPoints(context)
             self.drawHaltonPoints(context)
+            self.drawSobolPoints(context)
         }
     }
     
     func drawUniformPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.6, 0.0, 0.0, CGFloat(self.uniformTransparency))
+        CGContextSetRGBFillColor(context, 0.8, 0.0, 0.0, CGFloat(self.uniformTransparency))
         for point in self.points {
             self.drawPoint(point, context: context)
         }
     }
     
     func drawHaltonPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, CGFloat(self.pseudoTransparency))
+        CGContextSetRGBFillColor(context, 0.1, 0.7, 0.2, CGFloat(self.haltonTransparency))
         for point in self.haltonPoints {
+            self.drawPoint(point, context: context)
+        }
+    }
+    func drawSobolPoints(context: CGContextRef) {
+        CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, CGFloat(self.sobolTransparency))
+        for point in self.sobolPoints {
             self.drawPoint(point, context: context)
         }
     }
@@ -172,4 +153,42 @@ class CGView : NSView {
         ourRect.size.height = self.bounds.size.height - 40
         CGContextFillRect(context, ourRect)
     }
+    
+    // MARK: generate point clouds
+    func generatePointCloudUniform(size: CGSize, count: Int) -> Array<CGPoint> {
+        var points = [CGPoint]()
+        
+        for _ in 1...count {
+            let x = CGFloat(TLRandom(Int(size.width)))
+            let y = CGFloat(TLRandom(Int(size.height)))
+            let point = CGPointMake(x, y)
+            points.append(point)
+        }
+        return points
+    }
+    
+    func generatePointCloudHalton(size: CGSize, count: Int) -> Array<CGPoint> {
+        var points = [CGPoint]()
+        let halton = HaltonRandom()
+        
+        for _ in 1...count {
+            let point = halton.random(size)
+            points.append(point)
+        }
+        return points
+    }
+    
+    func generatePointCloudSobol(size: CGSize, count: Int) -> Array<CGPoint> {
+        var points = [CGPoint]()
+        let sobol = SobolRandom()
+        
+        for _ in 1...count {
+            var point = sobol.random()
+            point.x *= size.width
+            point.y *= size.height
+            points.append(point)
+        }
+        return points
+    }
+
 }

@@ -95,17 +95,15 @@ class HaltonRandom {
     
     // doesn't seem to work. Probably misunderstood Matlab code
     func localHaltonSingleNumber(index: Double, base: Double) -> Double {
+        var result = 0.0
+        var f = 1.0
         var n0 = index
-        var hn : Double = 0.0
-        var f = 1/base
         while (n0 > 0) {
-            let n1 = n0 / base
-            let r = n0 - n1 * base
-            hn = hn + f * r
             f = f / base
-            n0 = n1
+            result = result + f * (n0 % base)
+            n0 = floor(n0 / base)
         }
-        return hn
+        return result
     }
     
 }
