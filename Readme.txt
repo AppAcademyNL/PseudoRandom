@@ -6,7 +6,11 @@ This RandomTester example code has two different pseudo-random generators, the H
 
 The two pseudo-random generators give back random pairs, but the code can be tweaked to return more dimensions at once.
 
+<<<<<<< c2368e9d6966317f6be365d93397600bf04c5501:Readme.txt
 You can see the differences clearly in the 2D plot with the sliders.
+=======
+You can see the differences in the 2D plot with the sliders.
+>>>>>>> Reworded readme #3:Readme.md
 
 _Uniform distribution_
 ![uniform](https://raw.githubusercontent.com/AppAcademyNL/PseudoRandom/master/samples/uniform.png)
@@ -16,6 +20,7 @@ _Halton distribution_
 
 _Sobol distribution_
 ![sobol](https://raw.githubusercontent.com/AppAcademyNL/PseudoRandom/master/samples/sobol.png)
+
 
 Axel Roest
 2016
