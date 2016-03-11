@@ -8,23 +8,33 @@
 
 import Cocoa
 
+enum SliderTags : Int {
+    case Uniform = 1
+    case Pseudo = 2
+}
+
 class ViewController: NSViewController {
+    @IBOutlet weak var uniformSlider: NSSlider!
+    @IBOutlet weak var pseudoSlider: NSSlider!
+    @IBOutlet weak var dotView: NSView!
+    
     var gView : CGView?
     var count = 2000
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gView = CGView(frame: self.view.bounds)
+        gView = CGView(frame: self.dotView.bounds)
         if let gView = gView {
 //            gView.bounds = self.view.bounds
-            self.view.addSubview(gView)
-            self.view.needsDisplay = true
+            self.dotView.addSubview(gView)
+//            self.dotView.needsDisplay = true
             gView.points = self.generatePointCloudUniform(gView.bounds.size, count: count)
 //            gView.haltonPoints = self.generatePointCloudHalton(gView.bounds.size, count: count)
             gView.haltonPoints = self.generatePointCloudSobol(gView.bounds.size, count: count)
+            self.uniformSlider.doubleValue = gView.uniformTransparency
+            self.pseudoSlider.doubleValue = gView.pseudoTransparency
         }
-        
-        
+        self.view.needsDisplay = true
         // Do any additional setup after loading the view.
     }
     
@@ -48,12 +58,14 @@ class ViewController: NSViewController {
     
     func generatePointCloudHalton(size: CGSize, count: Int) -> Array<CGPoint> {
         var points = [CGPoint]()
-        let halton = Halton()
+        let halton = HaltonRandom()
         
         for _ in 1...count {
-            let x = CGFloat(halton.random() * Double(size.width))
-            let y = CGFloat(halton.random() * Double(size.height))
-            let point = CGPointMake(x, y)
+            let point = halton.random(size)
+
+//            let x = CGFloat(halton.random() * Double(size.width))
+//            let y = CGFloat(halton.random() * Double(size.height))
+//            let point = CGPointMake(x, y)
             points.append(point)
         }
         return points
@@ -74,10 +86,26 @@ class ViewController: NSViewController {
         }
         return points
     }
+    
+    @IBAction func setTransparency(sender: NSSlider) {
+        let tag = SliderTags(rawValue: sender.tag)!
+        switch tag {
+        case .Uniform :
+            self.gView?.uniformTransparency = sender.doubleValue
+        case .Pseudo :
+            self.gView?.pseudoTransparency = sender.doubleValue
+        }
+        if let g = self.gView {
+            g.needsDisplay = true
+        }
+    }
 
 }
 
 class CGView : NSView {
+    var uniformTransparency = 0.8
+    var pseudoTransparency = 0.3
+
     var points : [CGPoint] = [] {
         didSet {
             self.needsDisplay = true
@@ -116,14 +144,14 @@ class CGView : NSView {
     }
     
     func drawUniformPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.6, 0.0, 0.0, 1.0)
+        CGContextSetRGBFillColor(context, 0.6, 0.0, 0.0, CGFloat(self.uniformTransparency))
         for point in self.points {
             self.drawPoint(point, context: context)
         }
     }
     
     func drawHaltonPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, 1.0)
+        CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, CGFloat(self.pseudoTransparency))
         for point in self.haltonPoints {
             self.drawPoint(point, context: context)
         }

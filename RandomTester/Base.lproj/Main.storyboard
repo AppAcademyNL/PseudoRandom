@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -670,13 +671,70 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="RandomTester" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="580" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4I-x2R">
+                                <rect key="frame" x="44" y="20" width="491" height="366"/>
+                            </customView>
+                            <slider horizontalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bus-je-BcT" userLabel="uniform-slider">
+                                <rect key="frame" x="13" y="17" width="26" height="371"/>
+                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="left" numberOfTickMarks="3" sliderType="linear" id="qbt-69-7ax"/>
+                                <connections>
+                                    <action selector="setTransparency:" target="XfG-lQ-9wD" id="3VZ-og-PzR"/>
+                                </connections>
+                            </slider>
+                            <slider horizontalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="AqW-aw-cMi" userLabel="pseudo-slider">
+                                <rect key="frame" x="541" y="17" width="26" height="371"/>
+                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="right" numberOfTickMarks="3" sliderType="linear" id="48N-2p-N4q"/>
+                                <connections>
+                                    <action selector="setTransparency:" target="XfG-lQ-9wD" id="Mpj-Gt-xW1"/>
+                                </connections>
+                            </slider>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-PL-lga">
+                                <rect key="frame" x="534" y="389" width="42" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="halton" id="pWe-8s-OZn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-KV-jux">
+                                <rect key="frame" x="4" y="389" width="51" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="uniform" id="tWh-v4-3ey">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="AqW-aw-cMi" secondAttribute="bottom" constant="20" id="2uI-4M-DsU"/>
+                            <constraint firstAttribute="bottom" secondItem="H4x-4I-x2R" secondAttribute="bottom" constant="20" id="4hs-z7-OQF"/>
+                            <constraint firstItem="H4x-4I-x2R" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="44" id="A5K-Zx-OFl"/>
+                            <constraint firstItem="AqW-aw-cMi" firstAttribute="centerX" secondItem="pgr-PL-lga" secondAttribute="centerX" id="B18-JE-KLV"/>
+                            <constraint firstItem="B2R-KV-jux" firstAttribute="centerX" secondItem="bus-je-BcT" secondAttribute="centerX" constant="5" id="CaI-yx-lVb"/>
+                            <constraint firstItem="pgr-PL-lga" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="I9b-Rn-DNL"/>
+                            <constraint firstItem="B2R-KV-jux" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="N8l-r0-VKI"/>
+                            <constraint firstAttribute="trailing" secondItem="AqW-aw-cMi" secondAttribute="trailing" constant="13" id="Pdb-9y-gD3"/>
+                            <constraint firstItem="bus-je-BcT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="YSj-ZL-e2a"/>
+                            <constraint firstAttribute="trailing" secondItem="H4x-4I-x2R" secondAttribute="trailing" constant="45" id="dXX-OR-0I2"/>
+                            <constraint firstItem="bus-je-BcT" firstAttribute="leading" secondItem="H4x-4I-x2R" secondAttribute="leading" multiplier="0.3" id="ik1-Uf-f6k"/>
+                            <constraint firstItem="AqW-aw-cMi" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="re7-uH-7gk"/>
+                            <constraint firstAttribute="bottom" secondItem="bus-je-BcT" secondAttribute="bottom" constant="20" id="s09-MC-igy"/>
+                            <constraint firstItem="H4x-4I-x2R" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="yMQ-mm-qB2"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dotView" destination="H4x-4I-x2R" id="VRW-Wy-mff"/>
+                        <outlet property="pseudoSlider" destination="AqW-aw-cMi" id="d8B-ao-Nsg"/>
+                        <outlet property="setTransparency" destination="bus-je-BcT" id="IoJ-6D-cqO"/>
+                        <outlet property="uniformSlider" destination="bus-je-BcT" id="LM1-ji-eoF"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="69" y="704"/>
         </scene>
     </scenes>
 </document>
