@@ -18,22 +18,20 @@ class ViewController: NSViewController {
     @IBOutlet weak var uniformSlider: NSSlider!
     @IBOutlet weak var haltonSlider: NSSlider!
     @IBOutlet weak var sobolSlider: NSSlider!
-    @IBOutlet weak var dotView: NSView!
+    @IBOutlet weak var dotView: CGView!
     
-    var gView : CGView?
+//    var gView : CGView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        gView = CGView(frame: self.dotView.bounds)
-        if let gView = gView {
-//            gView.bounds = self.view.bounds
-            self.dotView.addSubview(gView)
-//            self.dotView.needsDisplay = true
-            self.uniformSlider.doubleValue = gView.uniformTransparency
-            self.haltonSlider.doubleValue = gView.haltonTransparency
-            self.sobolSlider.doubleValue = gView.sobolTransparency
+//        gView = CGView(frame: self.dotView.bounds)
+        if self.dotView != nil {
+            // self.dotView.addSubview(gView)
+            self.uniformSlider.doubleValue = self.dotView.uniformTransparency
+            self.haltonSlider.doubleValue = self.dotView.haltonTransparency
+            self.sobolSlider.doubleValue = self.dotView.sobolTransparency
         }
-        self.view.needsDisplay = true
+        self.dotView.needsDisplay = true
         // Do any additional setup after loading the view.
     }
     
@@ -48,13 +46,13 @@ class ViewController: NSViewController {
         let tag = SliderTags(rawValue: sender.tag)!
         switch tag {
         case .Uniform :
-            self.gView?.uniformTransparency = sender.doubleValue
+            self.self.dotView?.uniformTransparency = sender.doubleValue
         case .Halton :
-            self.gView?.haltonTransparency = sender.doubleValue
+            self.self.dotView?.haltonTransparency = sender.doubleValue
         case .Sobol :
-            self.gView?.sobolTransparency = sender.doubleValue
+            self.self.dotView?.sobolTransparency = sender.doubleValue
         }
-        if let g = self.gView {
+        if let g = self.self.dotView {
             g.needsDisplay = true
         }
     }
@@ -83,7 +81,12 @@ class CGView : NSView {
         }
     }
 
-    let pointSize : CGFloat = 2
+    var pointSize : CGFloat = 2 {
+        didSet {
+            // pointSize = floor(pointSize)
+            pointSize = pointSize < 2 ? 2 : pointSize
+        }
+    }
     
     private var currentContext : CGContext? {
         get {
@@ -97,20 +100,28 @@ class CGView : NSView {
             return nil
         }
     }
-
     
 //    init(frameRect: NSRect) {
 //        super.init(frame: frameRect)
 //    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.setupArrays()
+    }
     
     override func viewDidMoveToSuperview() {
         super.viewDidMoveToSuperview()
+        self.setupArrays()
+    }
+    
+    func setupArrays() {
         self.points = self.generatePointCloudUniform(self.bounds.size, count: count)
         self.haltonPoints = self.generatePointCloudHalton(self.bounds.size, count: count)
         self.sobolPoints = self.generatePointCloudSobol(self.bounds.size, count: count)
-        
     }
+    
     override func drawRect(rect: CGRect) {
+        self.pointSize = self.bounds.width / 200
         if let context = self.currentContext {
             self.drawUniformPoints(context)
             self.drawHaltonPoints(context)
@@ -139,9 +150,12 @@ class CGView : NSView {
     }
 
     func drawPoint(point: CGPoint, context: CGContextRef) {
-        let pointRect = CGRectMake(point.x, point.y, self.pointSize, self.pointSize)
-        CGContextFillRect(context, pointRect)
-        
+        let x = point.x * self.bounds.size.width
+        let y = point.y * self.bounds.size.height
+
+        let pointRect = CGRectMake(x, y, self.pointSize, self.pointSize)
+//        CGContextFillRect(context, pointRect)
+        CGContextFillEllipseInRect(context, pointRect)
     }
     
     func drawBackground(context: CGContextRef) {
@@ -159,8 +173,8 @@ class CGView : NSView {
         var points = [CGPoint]()
         
         for _ in 1...count {
-            let x = CGFloat(TLRandom(Int(size.width)))
-            let y = CGFloat(TLRandom(Int(size.height)))
+            let x = CGFloat(TLRandom())
+            let y = CGFloat(TLRandom())
             let point = CGPointMake(x, y)
             points.append(point)
         }
@@ -172,7 +186,7 @@ class CGView : NSView {
         let halton = HaltonRandom()
         
         for _ in 1...count {
-            let point = halton.random(size)
+            let point = halton.random()
             points.append(point)
         }
         return points
@@ -183,9 +197,7 @@ class CGView : NSView {
         let sobol = SobolRandom()
         
         for _ in 1...count {
-            var point = sobol.random()
-            point.x *= size.width
-            point.y *= size.height
+            let point = sobol.random()
             points.append(point)
         }
         return points

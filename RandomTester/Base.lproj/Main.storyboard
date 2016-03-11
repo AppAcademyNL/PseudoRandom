@@ -674,7 +674,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="580" height="406"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4I-x2R">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="H4x-4I-x2R" customClass="CGView" customModule="RandomTester" customModuleProvider="target">
                                 <rect key="frame" x="44" y="20" width="466" height="366"/>
                             </customView>
                             <slider horizontalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bus-je-BcT" userLabel="uniform-slider">

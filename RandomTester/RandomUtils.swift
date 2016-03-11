@@ -13,6 +13,11 @@ func TLRandom(max: Int) -> Int {
     return r % max
 }
 
+func TLRandom() -> Double {
+    let r = Double(arc4random())
+    return r / Double(UInt32.max)
+}
+
 class HaltonRandom2 {
     var haltonSequence : Array<Double>
     var index = 0
