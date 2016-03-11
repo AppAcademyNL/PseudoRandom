@@ -4,15 +4,17 @@ In short: you don’t want a uniform random number generator, but a pseudo-rando
 
 This RandomTester example code has two different pseudo-random generators, the Halton and the Sobol one.
 
+The two pseudo-random generators give back random pairs, but the code can be tweaked to return more dimensions at once.
+
 You can see the differences clearly in the 2D plot with the sliders.
 
-uniform distribution:
+_Uniform distribution_
 ![uniform](https://raw.githubusercontent.com/AppAcademyNL/PseudoRandom/master/samples/uniform.png)
 
-Halton distribution:
+_Halton distribution_
 ![halton](https://raw.githubusercontent.com/AppAcademyNL/PseudoRandom/master/samples/halton.png)
 
-Sobol distribution:
+_Sobol distribution_
 ![sobol](https://raw.githubusercontent.com/AppAcademyNL/PseudoRandom/master/samples/sobol.png)
 
 Axel Roest
