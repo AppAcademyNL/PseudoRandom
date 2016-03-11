@@ -11,6 +11,9 @@
 		77E505841C90348500A6A27B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505831C90348500A6A27B /* ViewController.swift */; };
 		77E505861C90348500A6A27B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E505851C90348500A6A27B /* Assets.xcassets */; };
 		77E505891C90348500A6A27B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77E505871C90348500A6A27B /* Main.storyboard */; };
+		77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505901C9034A200A6A27B /* RandomUtils.swift */; };
+		77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505921C918BEF00A6A27B /* SobolRandom.swift */; };
+		77E505971C918D7F00A6A27B /* sobol.c in Sources */ = {isa = PBXBuildFile; fileRef = 77E505951C918D7F00A6A27B /* sobol.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,11 @@
 		77E505851C90348500A6A27B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		77E505881C90348500A6A27B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77E5058A1C90348500A6A27B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77E505901C9034A200A6A27B /* RandomUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomUtils.swift; sourceTree = "<group>"; };
+		77E505921C918BEF00A6A27B /* SobolRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobolRandom.swift; sourceTree = "<group>"; };
+		77E505941C918D7F00A6A27B /* RandomTester-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RandomTester-Bridging-Header.h"; sourceTree = "<group>"; };
+		77E505951C918D7F00A6A27B /* sobol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sobol.c; sourceTree = "<group>"; };
+		77E505961C918D7F00A6A27B /* sobol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sobol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +62,14 @@
 			children = (
 				77E505811C90348500A6A27B /* AppDelegate.swift */,
 				77E505831C90348500A6A27B /* ViewController.swift */,
+				77E505901C9034A200A6A27B /* RandomUtils.swift */,
+				77E505921C918BEF00A6A27B /* SobolRandom.swift */,
+				77E505951C918D7F00A6A27B /* sobol.c */,
+				77E505961C918D7F00A6A27B /* sobol.h */,
 				77E505851C90348500A6A27B /* Assets.xcassets */,
 				77E505871C90348500A6A27B /* Main.storyboard */,
 				77E5058A1C90348500A6A27B /* Info.plist */,
+				77E505941C918D7F00A6A27B /* RandomTester-Bridging-Header.h */,
 			);
 			path = RandomTester;
 			sourceTree = "<group>";
@@ -131,8 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */,
 				77E505841C90348500A6A27B /* ViewController.swift in Sources */,
 				77E505821C90348500A6A27B /* AppDelegate.swift in Sources */,
+				77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */,
+				77E505971C918D7F00A6A27B /* sobol.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,11 +250,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RandomTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.RandomTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RandomTester/RandomTester-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -246,11 +265,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = RandomTester/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.RandomTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RandomTester/RandomTester-Bridging-Header.h";
 			};
 			name = Release;
 		};
