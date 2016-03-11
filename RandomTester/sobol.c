@@ -6,9 +6,10 @@
 //  Copyright © 2016 The App Academy. All rights reserved.
 //
 
+// This code is from Numerical Recipes in C, copied from the book
+
 #include "sobol.h"
-//#include "nrutil.h" 
-#define MAXBIT 30 
+#define MAXBIT 30
 
 #define MAXDIM 6
 
@@ -17,8 +18,9 @@
 #define DMAX(a,b) ((a) > (b) ? (a) : (b))
 #define IMIN(a,b) ((a) > (b) ? (b) : (a))
 
-void sobseq(int *n, float x[])
 //When n is negative, internally initializes a set of MAXBIT direction numbers for each of MAXDIM different Sobol’ sequences. When n is positive (but ≤MAXDIM), returns as the vector x[1..n] the next values from n of these sequences. (n must not be changed between initializations.)
+
+void sobseq(int *n, float x[])
 {
     int j,k,l;
     unsigned long i,im,ipp;

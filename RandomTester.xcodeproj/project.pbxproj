@@ -14,6 +14,7 @@
 		77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505901C9034A200A6A27B /* RandomUtils.swift */; };
 		77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505921C918BEF00A6A27B /* SobolRandom.swift */; };
 		77E505971C918D7F00A6A27B /* sobol.c in Sources */ = {isa = PBXBuildFile; fileRef = 77E505951C918D7F00A6A27B /* sobol.c */; };
+		77E5059F1C92E07F00A6A27B /* HaltonRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E5059E1C92E07F00A6A27B /* HaltonRandom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		77E505941C918D7F00A6A27B /* RandomTester-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RandomTester-Bridging-Header.h"; sourceTree = "<group>"; };
 		77E505951C918D7F00A6A27B /* sobol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sobol.c; sourceTree = "<group>"; };
 		77E505961C918D7F00A6A27B /* sobol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sobol.h; sourceTree = "<group>"; };
+		77E5059E1C92E07F00A6A27B /* HaltonRandom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HaltonRandom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				77E505831C90348500A6A27B /* ViewController.swift */,
 				77E505901C9034A200A6A27B /* RandomUtils.swift */,
 				77E505921C918BEF00A6A27B /* SobolRandom.swift */,
+				77E5059E1C92E07F00A6A27B /* HaltonRandom.swift */,
 				77E505951C918D7F00A6A27B /* sobol.c */,
 				77E505961C918D7F00A6A27B /* sobol.h */,
 				77E505851C90348500A6A27B /* Assets.xcassets */,
@@ -146,6 +149,7 @@
 			files = (
 				77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */,
 				77E505841C90348500A6A27B /* ViewController.swift in Sources */,
+				77E5059F1C92E07F00A6A27B /* HaltonRandom.swift in Sources */,
 				77E505821C90348500A6A27B /* AppDelegate.swift in Sources */,
 				77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */,
 				77E505971C918D7F00A6A27B /* sobol.c in Sources */,
