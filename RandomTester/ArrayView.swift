@@ -22,8 +22,8 @@ class ArrayView : NSView {
             self.needsDisplay = true
         }
     }
-    var width : Int
-    var height : Int
+    var mywidth : Int
+    var myheight : Int
     
     var pointSize : CGFloat = 2 {
         didSet {
@@ -49,8 +49,8 @@ class ArrayView : NSView {
     //        super.init(frame: frameRect)
     //    }
     required init?(coder: NSCoder) {
-        self.width = 10
-        self.height = 20
+        self.mywidth = 10
+        self.myheight = 20
         super.init(coder: coder)
     }
     
@@ -90,41 +90,6 @@ class ArrayView : NSView {
         ourRect.size.width = self.bounds.size.width - 40
         ourRect.size.height = self.bounds.size.height - 40
         CGContextFillRect(context, ourRect)
-    }
-    
-    // MARK: generate point clouds
-    func generatePointCloudUniform(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        
-        for _ in 1...count {
-            let x = CGFloat(TLRandom())
-            let y = CGFloat(TLRandom())
-            let point = CGPointMake(x, y)
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudHalton(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let halton = HaltonRandom()
-        
-        for _ in 1...count {
-            let point = halton.random()
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudSobol(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let sobol = SobolRandom()
-        
-        for _ in 1...count {
-            let point = sobol.random()
-            points.append(point)
-        }
-        return points
     }
     
 }
