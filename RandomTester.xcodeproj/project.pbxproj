@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		778C40E71D369D78007AD5C3 /* CGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E61D369D78007AD5C3 /* CGView.swift */; };
+		778C40EA1D369DB5007AD5C3 /* ArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E81D369DB5007AD5C3 /* ArrayView.swift */; };
+		778C40EB1D369DB5007AD5C3 /* SobolVectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */; };
 		77E505821C90348500A6A27B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505811C90348500A6A27B /* AppDelegate.swift */; };
 		77E505841C90348500A6A27B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505831C90348500A6A27B /* ViewController.swift */; };
 		77E505861C90348500A6A27B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E505851C90348500A6A27B /* Assets.xcassets */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		778C40E61D369D78007AD5C3 /* CGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGView.swift; sourceTree = "<group>"; };
+		778C40E81D369DB5007AD5C3 /* ArrayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayView.swift; sourceTree = "<group>"; };
+		778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobolVectorVC.swift; sourceTree = "<group>"; };
 		77E5057E1C90348500A6A27B /* RandomTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E505811C90348500A6A27B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E505831C90348500A6A27B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +70,9 @@
 			children = (
 				77E505811C90348500A6A27B /* AppDelegate.swift */,
 				77E505831C90348500A6A27B /* ViewController.swift */,
+				778C40E81D369DB5007AD5C3 /* ArrayView.swift */,
+				778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */,
+				778C40E61D369D78007AD5C3 /* CGView.swift */,
 				77E505901C9034A200A6A27B /* RandomUtils.swift */,
 				77E505921C918BEF00A6A27B /* SobolRandom.swift */,
 				77E5059E1C92E07F00A6A27B /* HaltonRandom.swift */,
@@ -147,9 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778C40E71D369D78007AD5C3 /* CGView.swift in Sources */,
 				77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */,
 				77E505841C90348500A6A27B /* ViewController.swift in Sources */,
 				77E5059F1C92E07F00A6A27B /* HaltonRandom.swift in Sources */,
+				778C40EA1D369DB5007AD5C3 /* ArrayView.swift in Sources */,
+				778C40EB1D369DB5007AD5C3 /* SobolVectorVC.swift in Sources */,
 				77E505821C90348500A6A27B /* AppDelegate.swift in Sources */,
 				77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */,
 				77E505971C918D7F00A6A27B /* sobol.c in Sources */,
@@ -298,6 +310,7 @@
 				77E5058F1C90348500A6A27B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -11,4 +11,7 @@
 
 #include <stdio.h>
 
+void sobseq(int *n, float x[]);
+void sobseqBreakPoints(int *n, float x[], void (*callback)(unsigned long *arr, const int width, const int height));
+
 #endif /* sobol_h */
