@@ -18,11 +18,13 @@ class SobolRandom {
         n = 0
     }
         
-    func start(_: (UnsafePointer<Void>, Int, Int) -> Void) {
+    func start(display: (UnsafePointer<UInt>, w: Int, h: Int) -> Void) {
         var nn : Int32 = -1
         sobseqBreakPoints(&nn, &result) { arr, width, height in
+            // TODO: to prevent capturing, maybe we can *copy* the values from arr here into a new array?
+//            let mem = UnsafePointer(arr)
             print ("w=\(width) x h=\(height)")
-            
+//            display(mem, w:width, h:height)
         }
         nn = 0
     }
