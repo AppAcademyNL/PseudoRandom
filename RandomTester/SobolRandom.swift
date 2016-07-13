@@ -18,6 +18,16 @@ class SobolRandom {
         n = 0
     }
     
+    convenience init(callback:(UnsafePointer<Void>, Int, Int)) {
+        self.init()
+        n = -1
+        sobseqBreakPoints(&n, &result) { arr, width, height in
+            print ("w=\(width) x h=\(height)")
+            
+            }
+        n = 0
+    }
+    
     func random() -> CGPoint {
         n += 1
         sobseq(&n, &result)
