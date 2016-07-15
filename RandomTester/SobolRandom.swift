@@ -98,12 +98,11 @@ class SobolRandom {
         
         assert(jj < MaxBit, "MAXBIT too small in sobseq")
         
-        im = (jj-1) * MaxDim
         //         XOR the appropriate direction number into each component of the vector and convert to a floating number.
 
         let endK = min( Int(sIndex), y:MaxDim)
         for k in (1 ... endK) {
-            ix[k] ^= initVector[k][im]
+            ix[k] ^= initVector[jj-1][k]
             result[k] = Double(ix[k]) * fac
         }
         return result
