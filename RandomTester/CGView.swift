@@ -153,7 +153,7 @@ class CGView : NSView {
         let sobol = SobolRandom()
         
         for _ in 1...count {
-            let point = sobol.random()
+            let point = sobol.randomPoint()
             points.append(point)
         }
         return points
