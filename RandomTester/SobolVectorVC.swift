@@ -36,15 +36,15 @@ class SobolVectorVC: NSViewController {
     func generateSobolVector() {
         var points = [CGPoint]()
         let sobol = SobolRandom()
-        sobol.start() { arr, width, height in
-            print ("w=\(width) x h=\(height)")
-            var mat = ContiguousArray(count: width, repeatedValue: ContiguousArray(count: height, repeatedValue: 0))
-            for k in (1 ... width * height) {
-                let x = k % width
-                let y = Int(k / height)
-                mat[x][y] = Int(arr[k])
-            }
-        }
+//        sobol.start() { arr, width, height in
+//            print ("w=\(width) x h=\(height)")
+//            var mat = ContiguousArray(count: width, repeatedValue: ContiguousArray(count: height, repeatedValue: 0))
+//            for k in (1 ... width * height) {
+//                let x = k % width
+//                let y = Int(k / height)
+//                mat[x][y] = Int(arr[k])
+//            }
+//        }
         
     }
 }
