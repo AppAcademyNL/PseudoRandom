@@ -59,6 +59,12 @@ void sobseq(int *n, float x[])
                 iu[j][k]=i;
             }
         }
+        // test output of sobol formula
+        for (i = 0 ; i < MAXDIM*MAXBIT; i++) {
+            j = (i / MAXDIM) + 1;
+            k = (i % MAXDIM) + 1;
+            printf("[%d , %d] = %d\n",j, k, iu[j][k]);
+        }
     } else {
         //        Calculate the next vector in the se- quence.
         im=in++;

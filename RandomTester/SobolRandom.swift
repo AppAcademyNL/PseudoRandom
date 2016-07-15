@@ -20,9 +20,9 @@ class SobolRandom {
     
     var fac : Double = 0.0
 
-    var ix : ContiguousArray<UInt32> =    [0,0,0,0,0,0,0]
-    var mdeg : ContiguousArray<UInt32> =  [0,1,2,3,3,4,4]
-    var ip : ContiguousArray<UInt32> =    [0,0,1,1,2,1,4]
+    var ix : ContiguousArray<UInt32> =    [0,0,0,0,0,0]
+    var mdeg : ContiguousArray<UInt32> =  [1,2,3,3,4,4]
+    var ip : ContiguousArray<UInt32> =    [0,1,1,2,1,4]
     var initVector : ContiguousArray<ContiguousArray<UInt32>>       // [0,1,1,1,1,1,1,3,1,3,3,1,1,5,7,7,3,3,5,15,11,5,15,13,9]
 
     
@@ -34,18 +34,24 @@ class SobolRandom {
         // Swift Sobol init
         // ix = ContiguousArray<UInt32>(count: MaxDim + 1, repeatedValue: 0)
         
-        initVector = ContiguousArray(count: MaxBit+1, repeatedValue: ContiguousArray(count: MaxDim + 1, repeatedValue: 0))      // we should move to zero index
-        initVector[0] = [0,0,1,1,1,1,1]
-        initVector[1] = [0,1,3,1,3,3,1]
-        initVector[2] = [0,1,5,7,7,3,3]
-        initVector[3] = [0,5,15,11,5,15,13]
-        initVector[4] = [0,9,0,0,0,0,0]
+        initVector = ContiguousArray(count: MaxBit, repeatedValue: ContiguousArray(count: MaxDim, repeatedValue: 0))      // we should move to zero index
+
+        initVector[0] = [1,1,1,1,1,1]
+        initVector[1] = [3,1,3,3,1,1]
+        initVector[2] = [5,7,7,3,3,5]
+        initVector[3] = [15,11,5,15,13,9]
+
+//        initVector[0] = [0,1,1,1,1,1]
+//        initVector[1] = [1,3,1,3,3,1]
+//        initVector[2] = [1,5,7,7,3,3]
+//        initVector[3] = [5,15,11,5,15,13]
+//        initVector[4] = [9,0,0,0,0,0]
         
         prepareSobol()
     }
     
     func prepareSobol() {
-        assert(initVector[0][2] == UInt32(1),"Initialisation vector is incorrect")
+        assert(initVector[0][1] == UInt32(1),"Initialisation vector is incorrect")
         self.fac = 1.0 / Double( UInt32(1) << UInt32(MaxBit) )
         
         // initialise iu array
@@ -55,20 +61,20 @@ class SobolRandom {
         //        }
         
         // initialise iu array some more
-        for k in (1...MaxDim) {
-            for j in (1 ... Int(mdeg[k])) {
+        for k in (0 ..< MaxDim) {
+            for j in (0 ..< Int(mdeg[k])) {
 //                initVector[j][k] <<= Int32(MaxBit - j)
                 let workaround = initVector[j][k]
                 initVector[j][k] = workaround << UInt32(MaxBit - j)
             }
-            let startJ = Int(mdeg[k]+1)
-            for j in (startJ ... MaxBit) {
+            let startJ = Int(mdeg[k])
+            for j in (startJ ..< MaxBit) {
                 var ipp : UInt32 = ip[k]
                 var i : UInt32 = initVector[j-Int(mdeg[k])][k]
                 i ^= (i >> mdeg[k])
-                let startL = Int(mdeg[k]) - 1
-                if startL > 0 {
-                    for l in (1 ... startL).reverse() {
+                let startL = Int(mdeg[k]) // - 1
+                if startL >= 0 {
+                    for l in (0 ..< startL).reverse() {
                         if (ipp & 1) == 1 {
                             i ^= initVector[j-l][k]
                         }
@@ -85,10 +91,9 @@ class SobolRandom {
         var im = sIndex + 1
         var jj: Int = 0
 
-        var result = ContiguousArray<Double>(count: MaxDim + 1, repeatedValue: 0)
-        result[0] = 0
+        var result = ContiguousArray<Double>(count: MaxDim, repeatedValue: 0)
         
-        for j in (1 ... MaxBit) {        //        Find the rightmost zero bit.
+        for j in (0 ..< MaxBit) {        //        Find the rightmost zero bit.
             if (im & 1) == 0 {
                 jj = j
                 break
@@ -101,8 +106,8 @@ class SobolRandom {
         //         XOR the appropriate direction number into each component of the vector and convert to a floating number.
 
         let endK = min( Int(sIndex), y:MaxDim)
-        for k in (1 ... endK) {
-            ix[k] ^= initVector[jj-1][k]
+        for k in (0 ..< endK) {
+            ix[k] ^= initVector[jj][k]
             result[k] = Double(ix[k]) * fac
         }
         return result
@@ -132,8 +137,8 @@ class SobolRandom {
     func randomPoint() -> CGPoint {
         sobolIndex += 1       // I guess n needs to be 2 for a two dimensional vector
         let result = self.sobol(sobolIndex)
-        let x = CGFloat(result[1])
-        let y = CGFloat(result[2])
+        let x = CGFloat(result[0])
+        let y = CGFloat(result[1])
         let point = CGPointMake(x, y)
         
         // logging
