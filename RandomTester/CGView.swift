@@ -16,9 +16,9 @@ import Cocoa
 
 
 class CGView : NSView {
-    var uniformTransparency = 0.8
+    var uniformTransparency = 0.4
     var haltonTransparency = 0.4
-    var sobolTransparency = 0.4
+    var sobolTransparency = 0.8
     var count = 2000
     
     var points : [CGPoint] = [] {
