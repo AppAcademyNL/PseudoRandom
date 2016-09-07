@@ -10,7 +10,7 @@ import Foundation
 
 class SobolRandom {
     var sinit: Int32 = 0                // for C
-    var sobolIndex: Int = -1           // for swift
+    var sobolIndex: Int = 0           // for swift
     
     var result : [Float] = [0,0,0,0]
     
@@ -106,8 +106,8 @@ class SobolRandom {
         
         //         XOR the appropriate direction number into each component of the vector and convert to a floating number.
 
-        let endK = min( Int(sIndex), y:MaxDim)
-        for k in (0 ..< endK) {
+        let endK = min( Int(sIndex), y:(MaxDim - 1))
+        for k in (0 ... endK) {
             ix[k] ^= initVector[jj][k]
             result[k] = Double(ix[k]) * fac
         }
