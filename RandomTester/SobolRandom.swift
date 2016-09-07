@@ -74,9 +74,9 @@ class SobolRandom {
                 i ^= (i >> mdeg[k])
                 let startL = Int(mdeg[k] - 1) // - 1
                 if startL >= 1 {
-                    for l in (1 ..< startL).reverse() {
+                    for l in (1 ... startL).reverse() {
                         if (ipp & 1) == 1 {
-                            i ^= initVector[j-l][k]
+                            i ^= initVector[j-l ][k]
                         }
                         ipp >>= 1
                     }
