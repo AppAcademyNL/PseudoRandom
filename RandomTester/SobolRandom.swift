@@ -10,7 +10,7 @@ import Foundation
 
 class SobolRandom {
     var sinit: Int32 = 0                // for C
-    var sobolIndex: Int = 0           // for swift
+    var sobolIndex: Int = -1           // for swift
     
     var result : [Float] = [0,0,0,0]
     
@@ -65,16 +65,16 @@ class SobolRandom {
             for j in (0 ..< Int(mdeg[k])) {
 //                initVector[j][k] <<= Int32(MaxBit - j)
                 let workaround = initVector[j][k]
-                initVector[j][k] = workaround << UInt32(MaxBit - j)
+                initVector[j][k] = workaround << UInt32(MaxBit - j - 1)
             }
             let startJ = Int(mdeg[k])
             for j in (startJ ..< MaxBit) {
                 var ipp : UInt32 = ip[k]
                 var i : UInt32 = initVector[j-Int(mdeg[k])][k]
                 i ^= (i >> mdeg[k])
-                let startL = Int(mdeg[k]) // - 1
-                if startL >= 0 {
-                    for l in (0 ..< startL).reverse() {
+                let startL = Int(mdeg[k] - 1) // - 1
+                if startL >= 1 {
+                    for l in (1 ..< startL).reverse() {
                         if (ipp & 1) == 1 {
                             i ^= initVector[j-l][k]
                         }
@@ -84,11 +84,12 @@ class SobolRandom {
                 initVector[j][k] = i
             }
         }
+        print("swift index\tim\tx[0]\tx[1]\tx[2]")
     }
     
     // return the next value of the random values
     func sobol(sIndex : Int) -> ContiguousArray<Double> {
-        var im = sIndex + 1
+        var im = sIndex
         var jj: Int = 0
 
         var result = ContiguousArray<Double>(count: MaxDim, repeatedValue: 0)
@@ -110,6 +111,7 @@ class SobolRandom {
             ix[k] ^= initVector[jj][k]
             result[k] = Double(ix[k]) * fac
         }
+        print("\(sIndex+1)\t\(im)\t\(result[0])\t\(result[1])\t\(result[2])")
         return result
     }
 
