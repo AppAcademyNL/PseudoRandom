@@ -5,6 +5,7 @@
 //  Created by Axel Roest on 10/03/16.
 //  Copyright © 2016 The App Academy. All rights reserved.
 //
+/* Interface between Sobol pseudo-random generator in C and swift */
 
 import Foundation
 
@@ -32,7 +33,6 @@ class SobolRandom {
         sinit = 0
         
         // Swift Sobol init
-        // ix = ContiguousArray<UInt32>(count: MaxDim + 1, repeatedValue: 0)
         
         initVector = ContiguousArray(count: MaxBit, repeatedValue: ContiguousArray(count: MaxDim, repeatedValue: 0))      // we should move to zero index
 
@@ -127,13 +127,22 @@ class SobolRandom {
         nn = 0
     }
     
-    func random() -> CGPoint {
-        sinit += 1
+    func randomPointC() -> CGPoint {
+        sinit += 1       // I guess n needs to be 2 for a two dimensional vector
         sobseq(&sinit, &result)
         let x = CGFloat(result[1])
         let y = CGFloat(result[2])
         let point = CGPointMake(x, y)
+        
+        // logging
+//        if (n % 100) == 0 {
+//            NSLog("RandomPoint called: %d times", n)
+//        }
         return point
+    }
+
+    func seedRandom() {
+        self.sobolIndex = TLRandom(128)
     }
     
     func randomPoint() -> CGPoint {
