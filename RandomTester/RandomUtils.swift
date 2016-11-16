@@ -8,7 +8,7 @@
 
 import Foundation
 
-func TLRandom(max: Int) -> Int {
+func TLRandom(_ max: Int) -> Int {
     let r = Int(arc4random())
     return r % max
 }

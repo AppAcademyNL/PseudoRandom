@@ -34,7 +34,7 @@ class SobolRandom {
         
         // Swift Sobol init
         
-        initVector = ContiguousArray(count: MaxBit, repeatedValue: ContiguousArray(count: MaxDim, repeatedValue: 0))      // we should move to zero index
+        initVector = ContiguousArray(repeating: ContiguousArray(repeating: 0, count: MaxDim), count: MaxBit)      // we should move to zero index
 
         initVector[0] = [1,1,1,1,1,1]
         initVector[1] = [3,1,3,3,1,1]
@@ -72,9 +72,9 @@ class SobolRandom {
                 var ipp : UInt32 = ip[k]
                 var i : UInt32 = initVector[j-Int(mdeg[k])][k]
                 i ^= (i >> mdeg[k])
-                let startL = Int(mdeg[k] - 1) // - 1
+                let startL = Int((mdeg[k] - 1)) // - 1
                 if startL >= 1 {
-                    for l in (1 ... startL).reverse() {
+                    for l in (1 ... startL).reversed() {
                         if (ipp & 1) == 1 {
                             i ^= initVector[j-l ][k]
                         }
@@ -88,11 +88,11 @@ class SobolRandom {
     }
     
     // return the next value of the random values
-    func sobol(sIndex : Int) -> ContiguousArray<Double> {
+    func sobol(_ sIndex : Int) -> ContiguousArray<Double> {
         var im = sIndex
         var jj: Int = 0
 
-        var result = ContiguousArray<Double>(count: MaxDim, repeatedValue: 0)
+        var result = ContiguousArray<Double>(repeating: 0, count: MaxDim)
         
         for j in (0 ..< MaxBit) {        //        Find the rightmost zero bit.
             if (im & 1) == 0 {
@@ -116,7 +116,7 @@ class SobolRandom {
     }
 
 
-    func start(display: (UnsafePointer<UInt>, w: Int, h: Int) -> Void) {
+    func start(_ display: (UnsafePointer<UInt>, _ w: Int, _ h: Int) -> Void) {
         var nn : Int32 = -1
         sobseqBreakPoints(&nn, &result) { arr, width, height in
             // TODO: to prevent capturing, maybe we can *copy* the values from arr here into a new array?
@@ -132,7 +132,7 @@ class SobolRandom {
         sobseq(&sinit, &result)
         let x = CGFloat(result[1])
         let y = CGFloat(result[2])
-        let point = CGPointMake(x, y)
+        let point = CGPoint(x: x, y: y)
         
         // logging
 //        if (n % 100) == 0 {
@@ -150,7 +150,7 @@ class SobolRandom {
         let result = self.sobol(sobolIndex)
         let x = CGFloat(result[0])
         let y = CGFloat(result[1])
-        let point = CGPointMake(x, y)
+        let point = CGPoint(x: x, y: y)
         
         // logging
         //        if (n % 100) == 0 {
@@ -159,7 +159,7 @@ class SobolRandom {
         return point
     }
 
-    func min<T : Comparable>(x:T , y:T) -> T {
+    func min<T : Comparable>(_ x:T , y:T) -> T {
         return (x < y) ? x : y
     }
 }

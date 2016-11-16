@@ -26,7 +26,7 @@ class SobolVectorVC: NSViewController {
         }
     }
     
-    @IBAction func step(sender: NSButton) {
+    @IBAction func step(_ sender: NSButton) {
         if let g = self.self.arrayView {
             g.points = Array<CGPoint>()
             g.needsDisplay = true
@@ -34,7 +34,6 @@ class SobolVectorVC: NSViewController {
     }
     
     func generateSobolVector() {
-        var points = [CGPoint]()
         let sobol = SobolRandom()
 //        sobol.start() { arr, width, height in
 //            print ("w=\(width) x h=\(height)")
