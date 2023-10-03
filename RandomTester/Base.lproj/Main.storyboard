@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -663,11 +663,14 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="B9Z-wi-eKh"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -689,28 +692,28 @@
                                 <rect key="frame" x="44" y="20" width="466" height="366"/>
                             </customView>
                             <slider horizontalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bus-je-BcT" userLabel="uniform-slider">
-                                <rect key="frame" x="13" y="17" width="26" height="371"/>
+                                <rect key="frame" x="11" y="14" width="24" height="374"/>
                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="left" numberOfTickMarks="3" sliderType="linear" id="qbt-69-7ax"/>
                                 <connections>
                                     <action selector="setTransparency:" target="XfG-lQ-9wD" id="3VZ-og-PzR"/>
                                 </connections>
                             </slider>
                             <slider horizontalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="AqW-aw-cMi" userLabel="halton-slider">
-                                <rect key="frame" x="511" y="17" width="26" height="371"/>
+                                <rect key="frame" x="517" y="14" width="24" height="374"/>
                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="right" numberOfTickMarks="3" sliderType="linear" id="48N-2p-N4q"/>
                                 <connections>
                                     <action selector="setTransparency:" target="XfG-lQ-9wD" id="Mpj-Gt-xW1"/>
                                 </connections>
                             </slider>
                             <slider horizontalHuggingPriority="750" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="Re3-0Q-2fB" userLabel="sobol-slider">
-                                <rect key="frame" x="543" y="17" width="26" height="371"/>
+                                <rect key="frame" x="545" y="14" width="24" height="374"/>
                                 <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" tickMarkPosition="right" numberOfTickMarks="3" sliderType="linear" id="C26-17-PQu"/>
                                 <connections>
                                     <action selector="setTransparency:" target="XfG-lQ-9wD" id="ggZ-N8-Zsq"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-LM-G4M">
-                                <rect key="frame" x="538" y="389" width="38" height="17"/>
+                                <rect key="frame" x="538" y="390" width="38" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="sobol" id="uyU-f0-1K2">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -718,7 +721,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="B2R-KV-jux">
-                                <rect key="frame" x="4" y="389" width="51" height="17"/>
+                                <rect key="frame" x="3" y="390" width="51" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="uniform" id="tWh-v4-3ey">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -726,7 +729,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pgr-PL-lga">
-                                <rect key="frame" x="496" y="389" width="42" height="17"/>
+                                <rect key="frame" x="500" y="390" width="42" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="halton" id="pWe-8s-OZn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -771,11 +774,14 @@
         <scene sceneID="Dl8-yE-h1b">
             <objects>
                 <windowController storyboardIdentifier="SobolWCID" id="nFj-Tb-r8g" sceneMemberID="viewController">
-                    <window key="window" title="Sobol Vector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mir-17-IZO">
+                    <window key="window" title="Sobol Vector" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="mir-17-IZO">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="425" y="461" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+                        <connections>
+                            <outlet property="delegate" destination="nFj-Tb-r8g" id="ylI-38-ugQ"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="KF2-h9-xyE" kind="relationship" relationship="window.shadowedContentViewController" id="mKx-zT-kgz"/>
@@ -794,7 +800,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HsP-eP-jA2">
-                                <rect key="frame" x="407" y="3" width="69" height="32"/>
+                                <rect key="frame" x="414" y="3" width="63" height="32"/>
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4UC-at-kVv">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -805,11 +811,13 @@
                             </button>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Izn-TB-gnY" customClass="ArrayView" customModule="RandomTester" customModuleProvider="target">
                                 <rect key="frame" x="20" y="40" width="440" height="210"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="HsP-eP-jA2" secondAttribute="bottom" constant="10" id="36P-jg-dUs"/>
                             <constraint firstAttribute="trailing" secondItem="HsP-eP-jA2" secondAttribute="trailing" constant="10" id="S0y-XX-QU7"/>
+                            <constraint firstItem="HsP-eP-jA2" firstAttribute="leading" relation="lessThanOrEqual" secondItem="SZZ-cY-1xP" secondAttribute="leading" constant="421" id="ufj-ib-dQi"/>
                         </constraints>
                     </view>
                     <connections>
