@@ -47,10 +47,7 @@ class CGView : NSView {
     fileprivate var currentContext : CGContext? {
         get {
             if #available(OSX 10.10, *) {
-                return NSGraphicsContext.current()?.cgContext
-            } else if let contextPointer = NSGraphicsContext.current()?.graphicsPort {
-                let context: CGContext = Unmanaged<AnyObject>.fromOpaque(contextPointer).takeUnretainedValue as! CGContext   // Unmanaged.fromOpaque(OpaquePointer(contextPointer)).takeUnretainedValue()
-                return context
+                return NSGraphicsContext.current?.cgContext
             }
             
             return nil
