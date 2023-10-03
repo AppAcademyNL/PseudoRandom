@@ -11,15 +11,21 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    var sobolWC : NSWindowController?
+    
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
     }
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
 
-
+    @IBAction func openSobolWindow(_ sender: AnyObject)
+    {
+        let sb = NSStoryboard(name: "Main", bundle: nil)
+        self.sobolWC = sb.instantiateController(withIdentifier: "SobolWCID") as? NSWindowController
+        self.sobolWC?.showWindow(self)
+    }
+    
 }

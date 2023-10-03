@@ -35,7 +35,7 @@ class HaltonRandom {
             let x = localHaltonSingleNumber(Double(index), base: Double(2))
             let y = localHaltonSingleNumber(Double(index), base: Double(3))
             
-            haltonSequence.append(CGPointMake(CGFloat(x), CGFloat(y)))
+            haltonSequence.append(CGPoint(x: CGFloat(x), y: CGFloat(y)))
         }
         
     }
@@ -46,7 +46,7 @@ class HaltonRandom {
     
     /* generates a two-dimensional sequence of count length */
     
-    func random(dimension: CGSize) -> CGPoint {
+    func random(_ dimension: CGSize) -> CGPoint {
         var point = self.random()
         point.x *= dimension.width
         point.y *= dimension.height
@@ -58,16 +58,16 @@ class HaltonRandom {
             self.index += 1
             return haltonSequence[index]
         }
-        return CGPointMake(0, 0)
+        return CGPoint(x: 0, y: 0)
     }
     
-    func localHaltonSingleNumber(index: Double, base: Double) -> Double {
+    func localHaltonSingleNumber(_ index: Double, base: Double) -> Double {
         var result = 0.0
         var f = 1.0
         var n0 = index
         while (n0 > 0) {
             f = f / base
-            result = result + f * (n0 % base)
+            result = result + f * (n0.truncatingRemainder(dividingBy: base))
             n0 = floor(n0 / base)
         }
         return result

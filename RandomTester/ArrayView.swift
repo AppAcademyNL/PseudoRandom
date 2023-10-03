@@ -15,15 +15,13 @@ import Cocoa
 
 
 class ArrayView : NSView {
-    var count = 2000
-    
     var points : [CGPoint] = [] {
         didSet {
             self.needsDisplay = true
         }
     }
-    var width : Int
-    var height : Int
+    var mywidth : Int = 10
+    var myheight : Int = 20
     
     var pointSize : CGFloat = 2 {
         didSet {
@@ -32,13 +30,10 @@ class ArrayView : NSView {
         }
     }
     
-    private var currentContext : CGContext? {
+    fileprivate var currentContext : CGContext? {
         get {
             if #available(OSX 10.10, *) {
-                return NSGraphicsContext.currentContext()?.CGContext
-            } else if let contextPointer = NSGraphicsContext.currentContext()?.graphicsPort {
-                let context: CGContextRef = Unmanaged.fromOpaque(COpaquePointer(contextPointer)).takeUnretainedValue()
-                return context
+                return NSGraphicsContext.current?.cgContext
             }
             
             return nil
@@ -57,85 +52,37 @@ class ArrayView : NSView {
 //        self.setupArrays()
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         self.pointSize = self.bounds.width / 200
         if let context = self.currentContext {
             self.drawPoints(context)
         }
     }
     
-    func drawPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.8, 0.0, 0.0, CGFloat(self.uniformTransparency))
+    func drawPoints(_ context: CGContext) {
+        context.setFillColor(red: 0.8, green: 0.0, blue: 0.0, alpha: 1.0)
         for point in self.points {
             self.drawPoint(point, context: context)
         }
     }
     
-    func drawHaltonPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.1, 0.7, 0.2, CGFloat(self.haltonTransparency))
-        for point in self.haltonPoints {
-            self.drawPoint(point, context: context)
-        }
-    }
-    func drawSobolPoints(context: CGContextRef) {
-        CGContextSetRGBFillColor(context, 0.0, 0.0, 1.0, CGFloat(self.sobolTransparency))
-        for point in self.sobolPoints {
-            self.drawPoint(point, context: context)
-        }
-    }
-    
-    func drawPoint(point: CGPoint, context: CGContextRef) {
+    func drawPoint(_ point: CGPoint, context: CGContext) {
         let x = point.x * self.bounds.size.width
         let y = point.y * self.bounds.size.height
-        
-        let pointRect = CGRectMake(x, y, self.pointSize, self.pointSize)
+
+        let pointRect = CGRect(x: x, y: y, width: self.pointSize, height: self.pointSize)
         //        CGContextFillRect(context, pointRect)
-        CGContextFillEllipseInRect(context, pointRect)
+        context.fillEllipse(in: pointRect)
     }
-    
-    func drawBackground(context: CGContextRef) {
+
+    func drawBackground(_ context: CGContext) {
         var ourRect = CGRect()
-        CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1.0)
+        context.setFillColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
         ourRect.origin.x = 20
         ourRect.origin.y = 20
         ourRect.size.width = self.bounds.size.width - 40
         ourRect.size.height = self.bounds.size.height - 40
-        CGContextFillRect(context, ourRect)
+        context.fill(ourRect)
     }
-    
-    // MARK: generate point clouds
-    func generatePointCloudUniform(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        
-        for _ in 1...count {
-            let x = CGFloat(TLRandom())
-            let y = CGFloat(TLRandom())
-            let point = CGPointMake(x, y)
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudHalton(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let halton = HaltonRandom()
-        
-        for _ in 1...count {
-            let point = halton.random()
-            points.append(point)
-        }
-        return points
-    }
-    
-    func generatePointCloudSobol(size: CGSize, count: Int) -> Array<CGPoint> {
-        var points = [CGPoint]()
-        let sobol = SobolRandom()
-        
-        for _ in 1...count {
-            let point = sobol.random()
-            points.append(point)
-        }
-        return points
-    }
-    
+
 }

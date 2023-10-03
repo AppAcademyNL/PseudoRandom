@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		778EBC421D3681F700315530 /* CGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EBC411D3681F700315530 /* CGView.swift */; };
-		778EBC441D36824700315530 /* ArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EBC431D36824700315530 /* ArrayView.swift */; };
-		778EBC461D368D9200315530 /* SobolVectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778EBC451D368D9200315530 /* SobolVectorVC.swift */; };
+		778C40E71D369D78007AD5C3 /* CGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E61D369D78007AD5C3 /* CGView.swift */; };
+		778C40EA1D369DB5007AD5C3 /* ArrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E81D369DB5007AD5C3 /* ArrayView.swift */; };
+		778C40EB1D369DB5007AD5C3 /* SobolVectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */; };
 		77E505821C90348500A6A27B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505811C90348500A6A27B /* AppDelegate.swift */; };
 		77E505841C90348500A6A27B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E505831C90348500A6A27B /* ViewController.swift */; };
 		77E505861C90348500A6A27B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77E505851C90348500A6A27B /* Assets.xcassets */; };
@@ -21,9 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		778EBC411D3681F700315530 /* CGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGView.swift; sourceTree = "<group>"; };
-		778EBC431D36824700315530 /* ArrayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayView.swift; sourceTree = "<group>"; };
-		778EBC451D368D9200315530 /* SobolVectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobolVectorVC.swift; sourceTree = "<group>"; };
+		778C40E61D369D78007AD5C3 /* CGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGView.swift; sourceTree = "<group>"; };
+		778C40E81D369DB5007AD5C3 /* ArrayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayView.swift; sourceTree = "<group>"; };
+		778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SobolVectorVC.swift; sourceTree = "<group>"; };
 		77E5057E1C90348500A6A27B /* RandomTester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomTester.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77E505811C90348500A6A27B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		77E505831C90348500A6A27B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,9 +70,9 @@
 			children = (
 				77E505811C90348500A6A27B /* AppDelegate.swift */,
 				77E505831C90348500A6A27B /* ViewController.swift */,
-				778EBC451D368D9200315530 /* SobolVectorVC.swift */,
-				778EBC411D3681F700315530 /* CGView.swift */,
-				778EBC431D36824700315530 /* ArrayView.swift */,
+				778C40E81D369DB5007AD5C3 /* ArrayView.swift */,
+				778C40E91D369DB5007AD5C3 /* SobolVectorVC.swift */,
+				778C40E61D369D78007AD5C3 /* CGView.swift */,
 				77E505901C9034A200A6A27B /* RandomUtils.swift */,
 				77E505921C918BEF00A6A27B /* SobolRandom.swift */,
 				77E5059E1C92E07F00A6A27B /* HaltonRandom.swift */,
@@ -113,17 +113,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "The App Academy";
+				LastUpgradeCheck = 1420;
+				ORGANIZATIONNAME = Phluxus;
 				TargetAttributes = {
 					77E5057D1C90348500A6A27B = {
 						CreatedOnToolsVersion = 7.2.1;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
 			buildConfigurationList = 77E505791C90348500A6A27B /* Build configuration list for PBXProject "RandomTester" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -156,12 +157,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				778EBC461D368D9200315530 /* SobolVectorVC.swift in Sources */,
-				778EBC421D3681F700315530 /* CGView.swift in Sources */,
+				778C40E71D369D78007AD5C3 /* CGView.swift in Sources */,
 				77E505931C918BEF00A6A27B /* SobolRandom.swift in Sources */,
 				77E505841C90348500A6A27B /* ViewController.swift in Sources */,
 				77E5059F1C92E07F00A6A27B /* HaltonRandom.swift in Sources */,
-				778EBC441D36824700315530 /* ArrayView.swift in Sources */,
+				778C40EA1D369DB5007AD5C3 /* ArrayView.swift in Sources */,
+				778C40EB1D369DB5007AD5C3 /* SobolVectorVC.swift in Sources */,
 				77E505821C90348500A6A27B /* AppDelegate.swift in Sources */,
 				77E505911C9034A200A6A27B /* RandomUtils.swift in Sources */,
 				77E505971C918D7F00A6A27B /* sobol.c in Sources */,
@@ -186,21 +187,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -223,6 +237,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -230,21 +245,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -259,6 +287,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -267,13 +297,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = RandomTester/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.RandomTester;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = us.phlux.RandomTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RandomTester/RandomTester-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -282,12 +317,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				INFOPLIST_FILE = RandomTester/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = nl.theappacademy.RandomTester;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = us.phlux.RandomTester;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "RandomTester/RandomTester-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
